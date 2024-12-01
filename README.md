@@ -1,5 +1,10 @@
 # Desafio técnico Go Expert FullCycle
 
+## Funcionamento
+
+Todas as requisições recebidas passam primeiramente no middleware que válida o acesso do IP ou token.
+O middleware usa um algoritmo de janelas de tempo que toda a nova requisição é criado uma referência de tempo no redis com uma data/horário de expiração.
+
 ## Configuração
 
 Copiar o arquivo `.env.exemplo` com o nome `.env`
@@ -18,9 +23,22 @@ Copiar o arquivo `.env.exemplo` com o nome `.env`
 
 ## Execução
 
-`go run main.go  --url=http://google.com --requests=25 --concurrency=4`
+- Executar o comando `docker compose up`
+- O servidor deverá iniciar e responder na porta configurada
 
-## Executando com o Docker
+### Exemplos de requição
 
-`docker run --rm -it $(docker build -q .) --url=http://google.com --requests=25 --concurrency=4`
-Isso fará o build da imagem, execução e quando concluído será deletada automaticamente.
+- Sem token
+```bash
+curl -X GET "http://localhost:8080" \
+  -H "Host: localhost:8080" \
+  -H "Accept: application/json"
+```
+
+- Com token
+```bash
+curl -X GET "http://localhost:8080" \
+  -H "Host: localhost:8080" \
+  -H "Accept: application/json" \
+  -H "API_KEY: xUfdhCBLzcwudBzQr3r3Pp60HZAa13Q6"
+```
