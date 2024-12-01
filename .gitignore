@@ -1,0 +1,10 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+**/.env
+coverage.tmp
+coverage.txt
+profile.out
