@@ -23,6 +23,7 @@ Copiar o arquivo `.env.exemplo` com o nome `.env`
 
 ## Execução
 
+- Executar o comando `docker compose build --no-cache`
 - Executar o comando `docker compose up`
 - O servidor deverá iniciar e responder na porta configurada
 
